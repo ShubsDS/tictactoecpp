@@ -2,42 +2,42 @@
 #include <string>     // For std::string
 #include <vector>     // For std::vector
 
-// Constants are preferred over macros for typed safety
-const double PI = 3.14159;
+char boardState[9];
+bool playerTurn = false;
 
 // Function declaration (prototype)
-void printGreeting();
-int add(int a, int b);
-void displayArray(const std::vector<int>& arr);
+void printBoardState() {
+  std::cout << boardState[0] << " | " << boardState[1] << " | " << boardState[2] << "\n";
+  std::cout << boardState[3] << " | " << boardState[4] << " | " << boardState[5] << "\n";
+  std::cout << boardState[6] << " | " << boardState[7] << " | " << boardState[8] << "\n";
+}
+
+
+bool checkIfGameWon() {
+  int winningCombinations[][3] = {{0,1,2}, {3,4,5}, {6,7,8}, {0,3,6}, {1,4,7}, {2,5,8}, {0,4,8}, {2,4,6}};
+  for(int i = 0; i < 8; i ++) {
+    int* combo = winningCombinations[i];
+    if(boardState[combo[0]] == boardState[combo[1]] && boardState[combo[1]] == boardState[combo[2]] && boardState[combo[0]] != ' ')
+      return true;
+  }
+
+  return false;
+}
 
 int main() {
-    // Print a greeting message
-    printGreeting();
 
-    // === Variable Definitions ===
-    int integerVar = 10;
-    double doubleVar = 3.14;
-    char charVar = 'A';
-    bool boolVar = true;
-    std::string stringVar = "Hello, C++";
+  for(int i = 0; i < 9; i++) {
+    printBoardState();
+    int player = playerTurn;
+    player ++;
+    std::cout << "player " << player << "'s turn" << "\n";
+    
 
-    // === Output Values ===
-    std::cout << "Integer: " << integerVar << std::endl;
-    std::cout << "Double: " << doubleVar << std::endl;
-    std::cout << "Char: " << charVar << std::endl;
-    std::cout << "Boolean: " << std::boolalpha << boolVar << std::endl;
-    std::cout << "String: " << stringVar << std::endl;
+  }
 
-    // === Array Example using std::vector ===
-    std::vector<int> numbers = {1, 2, 3, 4, 5};
-    std::cout << "Array elements: ";
-    displayArray(numbers);
 
-    // === Function Call ===
-    int result = add(5, 7);
-    std::cout << "Sum of 5 and 7 is: " << result << std::endl;
 
-    return 0;  // Exit success
+return 0;
 }
 
 // === Function Definitions ===

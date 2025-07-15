@@ -1,2 +1,0 @@
-#ifndef TICTACTOE
-#define TICTACTOE
